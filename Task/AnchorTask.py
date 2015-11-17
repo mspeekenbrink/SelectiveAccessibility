@@ -12,45 +12,45 @@ class Task:
         self.win = win
         self.tasknr = tasknr
         self.questionText = questionText
+        self.comparativeOptions = comparativeOptions
+        if which == 1:
+            self.instructionText = 'Q = ' + comparativeOptions[0] + ', ' + 'P = ' + comparativeOptions[1]
+        else:
+            self.instructionText = 'Use the number pad to type in your answer and press enter'
         self.unit = unit
         self.which = which
         self.trial = 1
         
         # visuals
-        self.Instructions = visual.TextStim(self.win,text=self.questionText,pos=(.0,.3),height=.08,alignVert='center',wrapWidth=1.5)
+        self.Question = visual.TextStim(self.win,text=self.questionText,pos=(.0,.3),height=.08,alignVert='center',wrapWidth=1.5)
+        self.Instructions = visual.TextStim(self.win,text=self.instructionText,pos=(.0,-.8),height=.07,alignVert='center',wrapWidth=1.5)
         self.Response = visual.TextStim(self.win,text="___" + unit,pos=(.0,.0),height=.08,alignVert='center',wrapWidth=1.5)
-        self.Button1 = Button.Button(self.win,pos=[-0.3,-0.3],size=[.3,.2],label=comparativeOptions[0],name=comparativeOptions[0],
-                                      textSize=0.6,fillColor=[.2,.2,.2],hoverFillColor=[.1,.1,.1],
-                                      lineColor=[-.3,-.3,-.3],hoverLineColor=[-.4,-.4,-.4])
-        self.Button2 = Button.Button(self.win,pos=[0.3,-0.3],size=[.3,.2],label=comparativeOptions[1],name=comparativeOptions[1],
-                                      textSize=0.6,fillColor=[.2,.2,.2],hoverFillColor=[.1,.1,.1],
-                                      lineColor=[-.3,-.3,-.3],hoverLineColor=[-.4,-.4,-.4])
         self.trialClock = core.Clock()
         self.datafile.write('taskNr,question,response,RT\n')
         
     def Run(self):
         if self.which == 1:
 
+            # display question
+            self.Question.draw()
+            self.Instructions.draw()
+            self.win.flip()
             # start RT measurement
             self.trialClock.reset()
             # wait for response
-            while self.Button1.noResponse and self.Button2.noResponse:
-                # allow to quit
+            cont = False
+            while (cont == False):
                 for key in event.getKeys():
+                    if key in ['p','q']:
+                        RT = self.trialClock.getTime()
+                        if key == 'p':
+                            response = self.comparativeOptions[1]
+                        else:
+                            response = self.comparativeOptions[0]
+                        cont = True
                     if key in ['escape']:
-                        done = True
+                        self.win.close()
                         core.quit()
-                self.Instructions.draw()
-                self.Button1.draw()
-                self.Button2.draw()
-                self.win.flip()
-            # get RT measurement
-            RT = self.trialClock.getTime() # could have done with button
-            # get response
-            if not self.Button1.noResponse:
-                response = self.Button1.name
-            else:
-                response = self.Button2.name
             
         if self.which == 2:
             text=''
@@ -67,8 +67,9 @@ class Task:
                         text=text[:-1]
                 #continually redraw text onscreen until return pressed
                 self.Response.setText(text + self.unit)
-                self.Instructions.draw()
+                self.Question.draw()
                 self.Response.draw()
+                self.Instructions.draw()
                 self.win.flip()
             
             # get RT

@@ -16,13 +16,13 @@ class Task:
         self.consonants = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z']
         
         # visuals
-        self.Instructions = visual.TextStim(self.win,text="Please type in the letters in the correct order and press enter to confirm",pos=(.0,.8),height=.08,alignVert='center',wrapWidth=1.5)
+        self.Instructions = visual.TextStim(self.win,text="Please type in the letters in the correct order and press enter to confirm",pos=(.0,-.8),height=.07,alignVert='center',wrapWidth=1.5)
         self.Stimulus = visual.TextStim(self.win,text="",pos=(.0,.0),height=.15,alignVert='center',wrapWidth=1.5)
         self.Response = visual.TextStim(self.win,text="___",pos=(.0,.0),height=.15,alignVert='center',wrapWidth=1.5)
         self.fixation = visual.ShapeStim(win,
             units='pix',
             lineColor='white',
-            lineWidth=2.0,
+            lineWidth=3.0,
             vertices=((-25, 0), (25, 0), (0,0), (0,25), (0,-25)),
             closeShape=False,
             pos= [0,0])

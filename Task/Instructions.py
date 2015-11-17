@@ -6,7 +6,7 @@ class Instructions():
     def __init__(self, win):
         
         instructionText = []
-        txt = 'This experiment is a pre-test in order to find out the best wording and presentation format for general-knowledge questions.'
+        txt = 'This experiment is a pre-test in order to find out the best wording and presentation format for general-knowledge questions. '
         txt += 'Specifically, we compare traditional methods that use general-knowledge questions and modern methods '
         txt += 'that analyze how quickly and accurately people recognize words.\n\n'
         txt += 'Some of the questions require a comparison with a given number. These numbers were chosen randomly, with a mechanism like a '
@@ -41,7 +41,7 @@ class Instructions():
         self.win = win
         self.instructions = visual.TextStim(win, pos=[0,0],text='Press any key to start',wrapWidth=1.5)
         self.instructions.setHeight(.07)
-        self.cont = visual.TextStim(win, pos=[1,-1], text = 'Press any key to continue', alignHoriz = 'right', alignVert = 'bottom')
+        self.cont = visual.TextStim(win, pos=[.98,-.98], text = 'Press any key to continue', alignHoriz = 'right', alignVert = 'bottom')
         self.cont.setHeight(.07)
             
     def Run(self):

@@ -7,7 +7,7 @@ import Instructions, AnchorTask, LDTask, SpanTask
 # some variables
 interTaskTime = 3
 resolution = (1600,900)
-responses = ['word','nonword']
+responses = ['has meaning','does not have meaning']
 taskAnchors = [['15'],['600'],['10','18'],['8,000','20,000']]
 comparativeQuestions = ['Is Big Ben taller or shorter than 15 meters high?',
                         'Is the M25 longer or shorter than 600 miles?',
@@ -63,7 +63,7 @@ random.shuffle(responses) # randomize
 
 dataFile = open(fileName, 'w') #a simple text file with 'comma-separated-values'
 dataFile.write('subject = ' + str(expInfo['subject']) + "; date = " + str(expInfo['date']) + '\n')
-dataFile.write('taskOrder = ' + str(taskOrder) + "; responses (P,Q) = " + str(responses) + '\n')
+dataFile.write('taskOrder = ' + str(taskOrder) + "; responses (Q,P) = " + str(responses) + '\n')
 dataFile.close()
 
 

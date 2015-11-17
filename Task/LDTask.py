@@ -13,7 +13,6 @@ class Task:
         result = []
         for row in reader:
             result.append(row)
-        print len(result)
         
         # determine whether there are practice items to go first
         practice_id = []
@@ -33,9 +32,9 @@ class Task:
         for i in range(len(word_id)):
             stimuli.append(result[word_id[i]])
         
+        self.instructionText = 'Q = ' + responses[0] + ', ' + 'P = ' + responses[1]
         self.stimuli = stimuli
         self.ntrials = len(stimuli)
-        print self.ntrials
         self.datafile = open(filename, 'a') #a simple text file with 'comma-separated-values'
         self.win = win
         self.tasknr = tasknr
@@ -43,12 +42,12 @@ class Task:
         self.responses = responses
         
         # visuals
-        self.Instructions = visual.TextStim(self.win,text="Choose an investment",pos=(.0,.0),height=.08,alignVert='center',wrapWidth=1.5)
-        self.Stimulus = visual.TextStim(self.win,text="sadjhgsad",pos=(.0,.0),height=.08,alignVert='center',wrapWidth=1.5)
+        self.Instructions = visual.TextStim(self.win,text=self.instructionText,pos=(.0,-.8),height=.07,alignVert='center',wrapWidth=1.5)
+        self.Stimulus = visual.TextStim(self.win,text="sadjhgsad",pos=(.0,.0),height=.1,alignVert='center',wrapWidth=1.5)
         self.fixation = visual.ShapeStim(win,
             units='pix',
             lineColor='white',
-            lineWidth=2.0,
+            lineWidth=3.0,
             vertices=((-25, 0), (25, 0), (0,0), (0,25), (0,-25)),
             closeShape=False,
             pos= [0,0])        
@@ -76,8 +75,10 @@ class Task:
             cont = False
             event.clearEvents()
             self.Stimulus.draw()
-            self.trialClock.reset()
+            self.Instructions.draw()
             self.win.flip()
+            
+            self.trialClock.reset()
             
             # wait for response
             while (cont == False):
