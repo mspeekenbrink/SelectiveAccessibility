@@ -13,7 +13,8 @@ class Task:
         self.datafile = open(filename, 'a') #a simple text file with 'comma-separated-values'
         self.win = win
         self.tasknr = tasknr
-        self.consonants = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z']
+        # self.consonants = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z']
+        self.consonants = ['b','c','d','f','g','h','j','k','l','m','n','r','s','t','v','w','x','z']
         
         # visuals
         self.Instructions = visual.TextStim(self.win,text="Please type in the letters in the correct order and press enter to confirm",pos=(.0,-.8),height=.07,alignVert='center',wrapWidth=1.5)

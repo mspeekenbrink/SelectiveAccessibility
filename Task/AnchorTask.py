@@ -14,7 +14,7 @@ class Task:
         self.questionText = questionText
         self.comparativeOptions = comparativeOptions
         if which == 1:
-            self.instructionText = 'Q = ' + comparativeOptions[0] + ', ' + 'P = ' + comparativeOptions[1]
+            self.instructionText = 'blue = ' + comparativeOptions[0] + ', ' + 'yellow = ' + comparativeOptions[1]
         else:
             self.instructionText = 'Use the number pad to type in your answer and press enter'
         self.unit = unit
@@ -56,12 +56,12 @@ class Task:
             text=''
             # until return pressed, listen for letter keys & add to text string
             self.trialClock.reset()
-            while event.getKeys(keyList=['return'])==[]:
-                letterlist=event.getKeys(keyList=['1','2','3','4','5','6','7','8','9','0','backspace'])
+            while event.getKeys(keyList=['return','num_enter'])==[]:
+                letterlist=event.getKeys(keyList=['1','2','3','4','5','6','7','8','9','0','num_1','num_2','num_3','num_4','num_5','num_6','num_7','num_8','num_9','num_0','backspace'])
                 for l in letterlist:
                     #if key isn't backspace, add key pressed to the string
                     if l !='backspace':
-                        text+=l
+                        text+=l.replace('num_','')
                     #otherwise, take the last letter off the string
                     elif len(text)>0:
                         text=text[:-1]

@@ -75,7 +75,7 @@ class Task:
             cont = False
             event.clearEvents()
             self.Stimulus.draw()
-            self.Instructions.draw()
+            #self.Instructions.draw()
             self.win.flip()
             
             self.trialClock.reset()

@@ -3,36 +3,45 @@ from psychopy import visual, event, core
 
 class Instructions():
     
-    def __init__(self, win):
+    def __init__(self, win, responses):
         
         instructionText = []
-        txt = 'This experiment is a pre-test in order to find out the best wording and presentation format for general-knowledge questions. '
-        txt += 'Specifically, we compare traditional methods that use general-knowledge questions and modern methods '
-        txt += 'that analyze how quickly and accurately people recognize words.\n\n'
-        txt += 'Some of the questions require a comparison with a given number. These numbers were chosen randomly, with a mechanism like a '
-        txt += '"wheel of fortune." This is to minimise any influence they might have on your answers and so we can assess the impact of '
-        txt += 'different question formats.\n\n'
-        txt += 'Some questions require you to answer by pressing either the P or the Q key on the keyboard. The keys corresponding to the '
-        txt += 'two possible answers will be displayed at the bottom of the screen. During these questions, please keep your forefingers on '
-        txt += 'these two keys to enable you to answer quickly. Other questions will require you to type an answer using the number pad on '
-        txt += 'the keyboard.\n\n'
+        
+        txt = 'This experiment is designed to test different methods for the assessment of general knowledge. Specifically, '
+        txt += 'variations on traditional methods that use general-knowledge questions will be compared with modern methods '
+        txt += 'that analyse how quickly and accurately people respond to words.\n\n'
+
+        txt += 'Some of the questions require a comparison with a given number. These numbers were chosen randomly, with a '
+        txt += 'mechanism like a "wheel of fortune." This is to minimise any influence they might have on your answers and so '
+        txt += 'we can assess the impact of different question formats. For these questions, you will respond using the keys '
+        txt += 'marked blue or yellow on the keyboard. If a question requires you to provide a numerical answer, please use the '
+        txt += 'number pad on the right of your keyboard.\n\n'
+        
         txt += 'Please answer all questions as accurately and quickly as possible.'
         instructionText.append(txt)
         
-        txt = 'Part of the experiment is testing a new method for assessing general knowledge. It is designed to implicitly assess general '
-        txt += 'knowledge by analysing how quickly people discriminate words from non-words. Collections of letters will be presented on '
-        txt += 'the screen and, using the P and Q keys on the keyboard, you should, as quickly as you can, indicate whether the collection '
-        txt += 'of letters has meaning for an English speaking person.\n\n'
-        txt += 'For example:\n'
-        txt += 'BRICK\t\tThis has meaning, because it is a small block used in building.\n'
-        txt += 'COLGATE\t\tThis has meaning, because it is a brand of toothpaste.\n'
+        txt = 'A more modern method assessing general knowledge implicitly assesses general knowledge by analysing how '
+        txt += 'quickly people discriminate words from non-words. Collections of letters will be presented on the screen and, using '
+        txt += 'the blue and yellow keys on the keyboard, you should indicate whether the collection of letters has meaning for an '
+        txt += 'English speaking person. The blue key corresponds to "' + responses[0] + '" and the yellow key to "' + responses[1] + '".\n\n'
+        
+        txt += 'For example, STEAVES does not have meaning, whilst AMAZING does (as it is a word). In addition, although they are '
+        txt += 'proper nouns, LONDON, COLGATE, ALDI, IKEA and KIT-KAT also mean something to an English speaking person.\n\n'
+
+        txt += 'Further examples are given below::\n'
+        txt += 'BRICK\t\tThis has meaning (it is a word).\n'
         txt += 'DOLPIP\t\tThis does not have meaning.\n'
-        txt += 'EXCEED\t\tThis has meaning, because it means to surpass or go beyond.\n'
+        txt += 'EXCEED\t\tThis has meaning (it is a word)\n'
         txt += 'FACEBOOK\t\tThis has meaning, because it is a social networking website.\n'
         txt += 'GRESDOR\t\tThis does not have meaning.'
         instructionText.append(txt)
         
-        txt = 'If you have any questions, please ask these to the experimenter now. Otherwise, you can continue with the experiment. \n\n'
+        txt = 'In between sets of general knowledge tasks, you will be asked to memorize short sequences of consonants. '
+        txt += 'You will see a sequence of consonants one by one on the screen. '
+        txt += 'After each sequence, you will be asked to recall the sequence and type it in the correct order.'
+        instructionText.append(txt)
+        
+        txt = 'If you have any questions, please ask the experimenter now. Otherwise, you can continue with the experiment. \n\n'
         instructionText.append(txt)
 
         self.instructionText = instructionText
