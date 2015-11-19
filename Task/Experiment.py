@@ -6,8 +6,9 @@ import Instructions, AnchorTask, LDTask, SpanTask
   
 # some variables
 interTaskTime = 3
+interTaskTime2 = 6
 resolution = (1600,900)
-responses = ['has meaning','does not have meaning']
+responses = ['yes','no']
 taskAnchors = [['15'],['600'],['10','18'],['8,000','20,000']]
 comparativeQuestions = ['Is Big Ben taller or shorter than 15 meters high?',
                         'Is the M25 longer or shorter than 600 miles?',
@@ -42,7 +43,7 @@ while(not ok):
 
 
 # setup data file
-fileName = 'Data/' + str(expInfo['subject']) + expInfo['date'] + '.csv'
+fileName = 'Data/' + 'Subject' + str(expInfo['subject']) + '_' + expInfo['date'] + '.csv'
 
 # Read in counterbalancing etc.
 # Adapted from http://stackoverflow.com/questions/14091387/creating-a-dictionary-from-a-csv-file
@@ -70,14 +71,30 @@ dataFile.close()
 #create a window to draw in
 myWin =visual.Window(resolution, allowGUI=False, bitsMode=None, units='norm', color=(0,0,0))
 
-instructions = visual.TextStim(myWin,pos=[0,0],text="",height=.08)
-LDTtext = 'Place your hands on the blue and yellow keys now.\n\nblue = ' + responses[0] + '\nyellow = ' + responses[1] + '\n\nRespond as quickly as possible.'
-SpanText = "You will be shown sequences of letters. Please memorize each."
-BetweenText = 'This is the end of the first round of tasks. There will be three more rounds just like this one. '
-BetweenText += 'In the task where we ask you to judge whether a word has meaning, respond as quickly as possible. '
-BetweenText += 'Make sure your forefingers rest on the blue and yellow keys. The blue key corresponds to "' + responses[0] 
-BetweenText += '" and the yellow key to "' + responses[1] + '".\n\nIf you have any questions, ask the experimenter now. '
-BetweenText += 'Otherwise, press any key to continue to the next block of the experiment.'
+instructions = visual.TextStim(myWin,pos=[0,0],text="",height=.08,alignHoriz='center',wrapWidth=1.2)
+LDTtext = 'Place your index fingers on the blue and yellow keys now.\n\nDOES IT HAVE MEANING?\n\nblue = ' + responses[0] + '\nyellow = ' + responses[1] + '\n\nRespond as quickly and accurately as possible.'
+LDTtext2 = 'Place your index fingers on the blue and yellow keys now.\n\nDOES IT HAVE MEANING?\n\nRespond as quickly and accurately as possible.'
+SpanText = "You will now be shown letters one at a time. Please memorize them and recall them in order when asked."
+
+BetweenText = []
+txt = 'This is the end of the first round of tasks. There will be three more rounds just like this one. '
+txt += 'In the "DOES IT HAVE MEANING?" task, please respond as quickly as possible. '
+txt += '\n\nThe blue key will always correspond to "' + responses[0] 
+txt += '" and the yellow key to "' + responses[1] + '". Make sure your index fingers rest on these keys.\n\nIf you have any questions, ask the experimenter now. '
+txt += 'Take a short break if you want to. Press any key to continue to the next block of the experiment.'
+BetweenText.append(txt)
+txt = 'This is the end of the second round of tasks. There will be two more rounds just like this one. '
+txt += 'In the "DOES IT HAVE MEANING?" task, please respond as quickly as possible. '
+txt += '\n\nThe blue key will always correspond to "' + responses[0] 
+txt += '" and the yellow key to "' + responses[1] + '". Make sure your index fingers rest on these keys.\n\n'
+txt += 'Take a short break if you want to. Press any key to continue to the next block of the experiment.'
+BetweenText.append(txt)
+txt = 'This is the end of the third round of tasks. There will be one more round just like this one. '
+txt += 'In the "DOES IT HAVE MEANING?" task, please respond as quickly as possible. '
+txt += '\n\nThe blue key will always correspond to "' + responses[0] 
+txt += '" and the yellow key to "' + responses[1] + '". Make sure your index fingers rest on these keys.\n\n'
+txt += 'Take a short break if you want to. Press any key to continue to the next block of the experiment.'
+BetweenText.append(txt)
 
 instr = Instructions.Instructions(myWin,responses)
 instr.Run()
@@ -86,12 +103,20 @@ instr.Run()
 for tsk in range(4):
     task = AnchorTask.Task(myWin,fileName,tsk+1,comparativeQuestions[taskOrder[tsk]-1],units[taskOrder[tsk]-1],comparativeOptions[taskOrder[tsk]-1],1)
     task.Run()
-    instructions.setText(LDTtext)
+    if tsk == 0:
+        instructions.setText(LDTtext)
+    else:
+        instructions.setText(LDTtext2)
     instructions.draw()
     myWin.flip()
-    core.wait(interTaskTime-.5)
-    myWin.flip()
-    core.wait(0.5)
+    if tsk == 0:
+        core.wait(interTaskTime2-.5)
+        myWin.flip()
+        core.wait(0.5)
+    else:
+        core.wait(interTaskTime-.5)
+        myWin.flip()
+        core.wait(0.5)
     task = LDTask.Task(myWin,fileName,tsk+1,taskOrder[tsk],responses)
     task.Run()
     core.wait(interTaskTime-.5)
@@ -103,17 +128,20 @@ for tsk in range(4):
         instructions.setText(SpanText)
         instructions.draw()
         myWin.flip()
-        core.wait(interTaskTime-.5)
-        myWin.flip()
-        core.wait(0.5)
+        if tsk == 0:
+            core.wait(interTaskTime2-.5)
+            myWin.flip()
+            core.wait(0.5)
+        else:
+            core.wait(interTaskTime-.5)
+            myWin.flip()
+            core.wait(0.5)
         task = SpanTask.Task(myWin,fileName,tsk+1)
         task.Run()
-        if tsk == 0:
-            instructions.setText(BetweenText)
-            instructions.draw()
-            myWin.flip()
-            event.waitKeys()
-
+        instructions.setText(BetweenText[tsk])
+        instructions.draw()
+        myWin.flip()
+        event.waitKeys()
 
 endText = "This is the end of the experiment. \n\n"
 endText += "Thank your for your participation."

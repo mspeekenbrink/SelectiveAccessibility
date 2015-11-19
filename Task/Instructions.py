@@ -9,39 +9,53 @@ class Instructions():
         
         txt = 'This experiment is designed to test different methods for the assessment of general knowledge. Specifically, '
         txt += 'variations on traditional methods that use general-knowledge questions will be compared with modern methods '
-        txt += 'that analyse how quickly and accurately people respond to words.\n\n'
+        txt += 'that analyse how quickly and accurately people respond to words.'
+        instructionText.append(txt)
 
-        txt += 'Some of the questions require a comparison with a given number. These numbers were chosen randomly, with a '
+        txt = 'Some of the questions require a comparison with a given number. These numbers were chosen randomly, with a '
         txt += 'mechanism like a "wheel of fortune." This is to minimise any influence they might have on your answers and so '
-        txt += 'we can assess the impact of different question formats. For these questions, you will respond using the keys '
-        txt += 'marked blue or yellow on the keyboard. If a question requires you to provide a numerical answer, please use the '
-        txt += 'number pad on the right of your keyboard.\n\n'
-        
-        txt += 'Please answer all questions as accurately and quickly as possible.'
+        txt += 'we can assess the impact of different question formats.\n\nFor these questions, you will respond using the keys '
+        txt += 'marked blue or yellow on the keyboard.'
         instructionText.append(txt)
         
-        txt = 'A more modern method assessing general knowledge implicitly assesses general knowledge by analysing how '
-        txt += 'quickly people discriminate words from non-words. Collections of letters will be presented on the screen and, using '
+        txt = 'Some of the questions require you to provide a numerical answer. Please use the '
+        txt += 'number pad on the right of your keyboard to answer these questions.\n\n'
+        instructionText.append(txt)
+        
+        txt = 'A more modern method implicitly assesses general knowledge by analysing how '
+        txt += 'quickly people discriminate words from non-words.\n\n'
+        instructionText.append(txt)
+        
+        txt = 'Collections of letters will be presented on the screen and, using '
         txt += 'the blue and yellow keys on the keyboard, you should indicate whether the collection of letters has meaning for an '
-        txt += 'English speaking person. The blue key corresponds to "' + responses[0] + '" and the yellow key to "' + responses[1] + '".\n\n'
+        txt += 'English speaking person.\n\n'
+        txt += 'Please answer these questions as quickly and accurately as possible.'
+        instructionText.append(txt)
+        
+        txt = 'The question is "DOES IT HAVE MEANING?"\n\n'
+        txt += 'The blue key corresponds to "' + responses[0] + '" and the yellow key to "' + responses[1] + '".\n\n'
         
         txt += 'For example, STEAVES does not have meaning, whilst AMAZING does (as it is a word). In addition, although they are '
         txt += 'proper nouns, LONDON, COLGATE, ALDI, IKEA and KIT-KAT also mean something to an English speaking person.\n\n'
 
-        txt += 'Further examples are given below::\n'
-        txt += 'BRICK\t\tThis has meaning (it is a word).\n'
-        txt += 'DOLPIP\t\tThis does not have meaning.\n'
-        txt += 'EXCEED\t\tThis has meaning (it is a word)\n'
-        txt += 'FACEBOOK\t\tThis has meaning, because it is a social networking website.\n'
-        txt += 'GRESDOR\t\tThis does not have meaning.'
+        txt += 'Further example answers are given below:\n'
+        txt += 'BRICK\t\tYES  (it is a word)\n'
+        txt += 'DOLPIP\t\tNO\n'
+        txt += 'EXCEED\t\tYES (it is a word)\n'
+        txt += 'FACEBOOK\t\tYES (it is a social networking website)\n'
+        txt += 'GRESDOR\t\tNO'
         instructionText.append(txt)
         
-        txt = 'In between sets of general knowledge tasks, you will be asked to memorize short sequences of consonants. '
-        txt += 'You will see a sequence of consonants one by one on the screen. '
-        txt += 'After each sequence, you will be asked to recall the sequence and type it in the correct order.'
+        txt = 'Between sets of general knowledge tasks, you will be asked to memorize short sequences of consonants. '
         instructionText.append(txt)
         
-        txt = 'If you have any questions, please ask the experimenter now. Otherwise, you can continue with the experiment. \n\n'
+        txt = 'Whenever you see a cross in the middle of the screen please look at it and be ready to respond as quickly and accurately as possible.'
+        instructionText.append(txt)
+        
+        txt = 'If you have any questions, please ask the experimenter now. Otherwise, you can continue with the experiment.'
+        instructionText.append(txt)
+        
+        txt = 'Remember to answer all questions as quickly and accurately as possible.'
         instructionText.append(txt)
 
         self.instructionText = instructionText

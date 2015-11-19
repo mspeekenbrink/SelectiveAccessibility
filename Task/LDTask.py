@@ -86,9 +86,9 @@ class Task:
                     if key in ['p','q']:
                         RT = self.trialClock.getTime()
                         if key == 'p':
-                            response = self.responses[0]
-                        else:
                             response = self.responses[1]
+                        else:
+                            response = self.responses[0]
                         cont = True
                     if key in ['escape']:
                         self.win.close()
