@@ -65,7 +65,10 @@ class Task:
                     elif len(text)>0:
                         text=text[:-1]
                 #continually redraw text onscreen until return pressed
-                self.Response.setText(text + self.unit)
+                if self.unit == u'\u00A3':
+                    self.Response.setText(self.unit + ' ' + text)
+                else:
+                    self.Response.setText(text + self.unit)
                 self.Question.draw()
                 self.Response.draw()
                 self.Instructions.draw()

@@ -26,7 +26,7 @@ absoluteQuestions = ['How tall is Big Ben?',
 units = [' metres',
          ' miles',
          u'\u00B0C',
-         u' \u00A3']
+         u'\u00A3']
          
 # Admin
 expInfo = {'date':data.getDateStr(),'subject':'1'}
@@ -52,7 +52,7 @@ result = []
 for row in reader:
     if row['id'] == str(expInfo['subject']):
         result = row
-if result['whichExpt.First'] == 1:
+if result['whichExpt.First'] == '1':
     taskOrder = random.sample([1,2],2) + [3,4]
     anchors = [taskAnchors[0],taskAnchors[1],taskAnchors[2][int(result['E1anchor']) - 1],taskAnchors[3][int(result['E2anchor']) - 1]]
 else:
@@ -144,7 +144,7 @@ for tsk in range(4):
         event.waitKeys()
 
 endText = "This is the end of the experiment. \n\n"
-endText += "Thank your for your participation."
+endText += "Thank you for your participation."
 instructions.setText(endText) 
 instructions.draw()
 myWin.flip()
