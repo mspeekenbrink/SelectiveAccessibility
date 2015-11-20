@@ -1,5 +1,4 @@
 import random, math, array, random, csv
-import Button
 from psychopy import core,visual,event
 
 class Task:
