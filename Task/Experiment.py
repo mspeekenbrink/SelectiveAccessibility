@@ -9,7 +9,7 @@ interTaskTime = 3
 interTaskTime2 = 6
 resolution = (1600,900)
 responses = ['yes','no']
-taskAnchors = [['15'],['600'],['10','18'],['8,000','20,000']]
+taskAnchors = [['15'],['600'],['2','25'],['13,000','200,000']]
 comparativeQuestions = ['Is Big Ben taller or shorter than 15 meters high?',
                         'Is the M25 longer or shorter than 600 miles?',
                         u'Is the annual average temperature in the UK higher or lower than [anchor]\u00B0',
